@@ -4,21 +4,29 @@ const fs = require('fs');
 //universally unique id
 const { uuidv4 } = require('uuidv4');
 
+
+
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 app.use(express.static('public'));
+
 
 app.get('/', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))
 );
-app.get('*', (req, res) =>
-    res.sendFile(path.join(__dirname, '/public/index.html'))
-);
+
 //path to file not working for some reason?
 app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
+);
+
+app.get('*', (req, res) =>
+    res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
 //read and return saved notes from the json file, still as a json file
@@ -88,6 +96,8 @@ app.post('/api/notes', async (req, res) => {
 
 });
 
+//Bonus
+
 //delete notes
 app.delete("/api/notes/:id", async (req, res) =>{
 
@@ -131,6 +141,6 @@ function removeId(array, id){
     }, [])
 }
 
-app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+app.listen(PORT, () => console.log(`App listening at  http://localhost:${PORT}`));
 
 
