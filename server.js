@@ -25,6 +25,9 @@ app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
+app.get('*', (req, res) =>
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+);
 
 //read and return saved notes from the json file, still as a json file
 app.get('/api/notes', (req, res) => {
@@ -137,10 +140,6 @@ function removeId(array, id){
         return position;
     }, [])
 }
-
-app.get('*', (req, res) =>
-    res.sendFile(path.join(__dirname, '/public/index.html'))
-);
 
 app.listen(PORT, () => console.log(`App listening at  http://localhost:${PORT}`));
 
