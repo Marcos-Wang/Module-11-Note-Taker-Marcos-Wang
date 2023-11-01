@@ -16,7 +16,7 @@ app.get('/', (req, res) =>
 app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))
 );
-
+//path to file not working for some reason?
 app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
