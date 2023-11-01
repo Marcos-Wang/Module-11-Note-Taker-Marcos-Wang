@@ -98,48 +98,48 @@ app.post('/api/notes', async (req, res) => {
 
 //Bonus
 
-//delete notes
-app.delete("/api/notes/:id", async (req, res) =>{
+// //delete notes
+// app.delete("/api/notes/:id", async (req, res) =>{
 
 
     
-    try{
+//     try{
 
-        const database = await fs.readFileSync('./db/db.json', "utf-8");
-        const noteArray = JSON.parse(database);
-        const noteToDeleteID = req.params.id;
+//         const database = await fs.readFileSync('./db/db.json', "utf-8");
+//         const noteArray = JSON.parse(database);
+//         const noteToDeleteID = req.params.id;
 
-        noteToDelete = removeId(noteArray, noteToDeleteID);
+//         noteToDelete = removeId(noteArray, noteToDeleteID);
         
-        const writeRemove = JSON.stringify(removal, null, 2);
-        await fs.writeFileSync('./db/db.json', writeRemove);
-        return res.status(201).json("Note successfully removed.")
+//         const writeRemove = JSON.stringify(removal, null, 2);
+//         await fs.writeFileSync('./db/db.json', writeRemove);
+//         return res.status(201).json("Note successfully removed.")
 
 
 
-    }
+//     }
 
-    catch (err) {
-        return res.status(500).json(err)
-    }
-
-
-});
+//     catch (err) {
+//         return res.status(500).json(err)
+//     }
 
 
+// });
 
 
-//separated this function from the delete for simplicity
-function removeId(array, id){
-    return array.reduce((position, value)=>{
-        console.log(value);
-        if (value.id !==  id){
-            position.push(value);
-        }
-        console.log(position);
-        return position;
-    }, [])
-}
+
+
+// //separated this function from the delete for simplicity
+// function removeId(array, id){
+//     return array.reduce((position, value)=>{
+//         console.log(value);
+//         if (value.id !==  id){
+//             position.push(value);
+//         }
+//         console.log(position);
+//         return position;
+//     }, [])
+// }
 
 app.listen(PORT, () => console.log(`App listening at  http://localhost:${PORT}`));
 
